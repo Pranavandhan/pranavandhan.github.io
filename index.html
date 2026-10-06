@@ -92,9 +92,9 @@ sub{line-height:0}
 <body>
 
 <video class="sim" id="sim" src="merger-simulation.mp4" poster="poster.jpg" autoplay muted loop playsinline controls preload="auto"
-  aria-label="Simulation of a 2 solar-mass main-sequence star merging with a 10 solar-mass post-main-sequence star, with 12 million particles. Colour shows gas density."></video>
+  aria-label="Simulation of a 2 solar-mass main-sequence star merging with a 10 solar-mass Hertzsprung-gap star, with 12 million particles. Colour shows gas density."></video>
 <div class="wrap">
-  <p class="sim-note">A 2 M<sub>☉</sub> main-sequence star merging with a 10 M<sub>☉</sub> post-main-sequence star, simulated with 12 million SPH particles. Colour shows gas density.</p>
+  <p class="sim-note">SPH simulation (12 million particles) of a 10 M<sub>☉</sub> Hertzsprung-gap primary merging with a 2 M<sub>☉</sub> zero-age main-sequence secondary, from the initial binary to the relaxed merger product. Colour shows the gas density, log<sub>10</sub>(ρ / g cm<sup>−3</sup>), in the orbital plane. The clock gives elapsed time in hours.</p>
 
   <header class="title">
     <h1>Evolution of One&#8209;Dimensional Stellar Merger Products</h1>
@@ -161,12 +161,12 @@ sub{line-height:0}
       <div>
         <div class="prose">
         <p>The video above is a smoothed-particle hydrodynamics simulation run with Phantom. It follows a 10 M<sub>☉</sub> post-main-sequence star merging with a 2 M<sub>☉</sub> main-sequence star, using 12 million particles. The colour shows the logarithm of gas density in g/cm³.</p>
-        <p>The thesis compares a 1.2 million-particle run of the same configuration with the one-dimensional prescriptions. The outcome supports entropy sorting, as the figure below shows.</p>
+        <p>The thesis compares a 1.2 million-particle run of this configuration with the one-dimensional prescriptions. The 12 million-particle run converges to the same result, which supports entropy sorting, as the figure below shows.</p>
         <p>A paper presenting this simulation is in preparation.</p>
       </div>
         <figure class="fig">
-          <a href="sph-vs-entropy-sorting.jpg" aria-label="Open the figure at full size"><img src="sph-vs-entropy-sorting.jpg" alt="Two panels comparing the 3D SPH merger product with entropy sorting against mass coordinate. Left: passive scalar, with the secondary's material placed at about 2.3 solar masses by entropy sorting and about 3.3 solar masses by SPH. Right: hydrogen and helium mass fractions, with SPH smoother than entropy sorting." width="2000" height="977" loading="lazy"></a>
-          <figcaption>The 3D SPH merger product compared with entropy sorting (ES). <em>Left:</em> passive scalar against mass coordinate; it is 1 for material from the primary and 0 for material from the secondary. Dashed lines mark where it drops, at 2.3 M<sub>☉</sub> for ES and 3.3 M<sub>☉</sub> for SPH. <em>Right:</em> hydrogen (X) and helium (Y) mass fractions, SPH solid and ES dashed. Figure 13 of the thesis, from the 1.2 million-particle run.</figcaption>
+          <a href="sph-vs-entropy-sorting-12M.jpg" aria-label="Open the figure at full size"><img src="sph-vs-entropy-sorting-12M.jpg" alt="Two panels comparing the 3D SPH merger product with entropy sorting against mass coordinate. Left: passive scalar, with the secondary's material placed at about 2.3 solar masses by entropy sorting and about 3.2 solar masses by SPH. Right: hydrogen and helium mass fractions, with SPH smoother than entropy sorting." width="886" height="442" loading="lazy"></a>
+          <figcaption>The 3D SPH merger product (12 million particles) compared with entropy sorting (ES). <em>Left:</em> passive scalar against mass coordinate; it is 1 for material from the primary and 0 for material from the secondary. Dashed lines mark where it drops, at 2.3 M<sub>☉</sub> for ES and 3.2 M<sub>☉</sub> for SPH. <em>Right:</em> hydrogen (X) and helium (Y) mass fractions, SPH solid and ES dashed. The thesis shows the same comparison for the 1.2 million-particle run (Figure 13).</figcaption>
         </figure>
       </div>
     </div>
@@ -209,7 +209,7 @@ sub{line-height:0}
         <div>
           <p class="name">Pranavandhan Upendranath</p>
           <p class="where">Heidelberg University and the Heidelberg Institute for Theoretical Studies</p>
-          <p><span id="mail">upranavandhan [at] gmail [dot] com</span></p>
+          <p><a href="#" id="mail" title="Click to write an email">upranavandhan [at] gmail [dot] com</a></p>
           <p><a href="https://orcid.org/0009-0002-3220-8722">ORCID 0009-0002-3220-8722</a></p>
         </div>
       </div>
@@ -242,7 +242,7 @@ sub{line-height:0}
   var v=document.getElementById('sim');
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}
   var m=document.getElementById('mail');
-  if(m){var u='upranavandhan',h=['gm','ail'].join(''),a=document.createElement('a'),addr=u+String.fromCharCode(64)+h+'.com';a.href='mailto:'+addr;a.textContent=addr;m.replaceWith(a);}
+  if(m){m.addEventListener('click',function(e){e.preventDefault();var u='upranavandhan',h=['gm','ail'].join('');location.href='mailto:'+u+String.fromCharCode(64)+h+'.com';});}
   var b=document.getElementById('copy');
   b.addEventListener('click',function(){
     var t=document.getElementById('bib').textContent;
