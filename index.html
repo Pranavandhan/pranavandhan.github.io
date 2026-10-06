@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evolution of One-Dimensional Stellar Merger Products</title>
+<meta name="description" content="Master thesis by Pranavandhan Upendranath, Heidelberg University (2026): one-dimensional stellar merger products, compared with a 3D SPH simulation.">
+<meta property="og:title" content="Evolution of One-Dimensional Stellar Merger Products">
+<meta property="og:description" content="Master thesis, Heidelberg University, 2026. Read the PDF and watch the 3D merger simulation.">
+<meta property="og:image" content="poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000;            /* matches the simulation's own black, so the video has no visible edge */
+  --ash:#1a0f0b;
+  --text:#f2e4d2;
+  --muted:#a38d7a;
+  --ember:#ff8a2b;
+  --glow:#ffd9a8;
+  --blood:#9c2410;
+  --line:#3a1c12;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Instrument Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--ink);color:var(--text);-webkit-text-size-adjust:100%}
+body{margin:0;font:400 1.125rem/1.65 var(--serif);font-optical-sizing:auto;background:var(--ink)}
+a{color:var(--ember);text-underline-offset:.2em}
+a:hover{color:var(--glow)}
+:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+.sim{display:block;width:100%;max-height:88vh;aspect-ratio:16/9;background:#000;object-fit:contain}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+.sim-note{font:400 .875rem/1.5 var(--sans);color:var(--muted);padding:.75rem 0 0}
+header.title{padding:3.5rem 0 3rem}
+h1{font:300 clamp(2.4rem,6.2vw,5rem)/1.04 var(--serif);letter-spacing:-.015em;margin:0 0 1.5rem;max-width:15ch}
+.by{font:500 1.0625rem/1.5 var(--sans);margin:0}
+.by span{display:block;font-weight:400;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.btn{font:600 1rem/1 var(--sans);padding:.95rem 1.4rem;border-radius:2px;text-decoration:none;border:1px solid var(--ember);cursor:pointer;display:inline-block}
+.btn.primary{background:var(--ember);color:#1a0800}
+.btn.primary:hover{background:var(--glow);border-color:var(--glow);color:#1a0800}
+.btn.ghost{background:transparent;color:var(--ember)}
+.btn.ghost:hover{border-color:var(--glow);color:var(--glow)}
+.size{font:400 .875rem var(--sans);color:var(--muted);align-self:center}
+section{padding:3rem 0;border-top:1px solid var(--line)}
+.cols>*,.cover>*{min-width:0}
+.cols{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr);gap:1rem 3rem}
+h2{font:500 1.0625rem/1.4 var(--sans);margin:0;color:var(--ember)}
+.prose{max-width:36rem}
+.prose p{margin:0 0 1.15em}
+.channels{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:44rem}
+.channel{border-left:3px solid var(--blood);padding-left:1.1rem}
+.channel.hot{border-color:var(--ember)}
+.channel h3{font:600 1rem/1.4 var(--sans);margin:0 0 .4rem}
+.channel p{margin:0;font-size:1.0625rem}
+.channels+p{max-width:36rem;margin:1.5rem 0 0}
+dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:.6rem 2rem;font-size:1.0625rem}
+dt{font:500 .9375rem/1.7 var(--sans);color:var(--muted)}
+dd{margin:0}
+.cover{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:2rem;align-items:start}
+.cover img{width:100%;height:auto;display:block;background:#fff}
+pre{margin:0;max-width:100%;padding:1.1rem 1.25rem;background:var(--ash);border:1px solid var(--line);font:400 .9rem/1.6 ui-monospace,Consolas,monospace;color:var(--glow);overflow-x:auto}
+details{max-width:36rem;margin-top:1.5rem}
+summary{font:500 .9375rem var(--sans);color:var(--ember);cursor:pointer}
+details p{margin:.9rem 0 0;color:#d8c8b6;font-size:1.0625rem}
+footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);font:400 .875rem/1.6 var(--sans);color:var(--muted)}
+sub{line-height:0}
+@media (max-width:42rem){
+  .cols,.channels,.cover{grid-template-columns:1fr}
+  .cover img{max-width:9rem}
+  dl{grid-template-columns:1fr;gap:.1rem}
+  dd{margin-bottom:.8rem}
+  header.title{padding-top:2.25rem}
+}
+</style>
+</head>
+<body>
+
+<video class="sim" id="sim" src="merger-simulation.mp4" poster="poster.jpg" autoplay muted loop playsinline controls preload="auto"
+  aria-label="Simulation of a 10 solar-mass star merging with a 2 solar-mass companion, showing gas density in the orbital plane"></video>
+<div class="wrap">
+  <p class="sim-note">Gas density in the orbital plane as a 2 M<sub>☉</sub> star spirals into a 10 M<sub>☉</sub> star. Time in hours is shown in the corner.</p>
+
+  <header class="title">
+    <h1>Evolution of One&#8209;Dimensional Stellar Merger Products</h1>
+    <p class="by">Pranavandhan Upendranath <span>Master thesis in Physics, Heidelberg University, 2026</span></p>
+    <div class="actions">
+      <a class="btn primary" href="thesis.pdf" download>Download thesis (PDF)</a>
+      <a class="btn ghost" href="#cite">Cite this thesis</a>
+      <span class="size">111 pages, 14.5 MB</span>
+    </div>
+  </header>
+
+  <section id="abstract">
+    <div class="cols">
+      <h2>Abstract</h2>
+      <div class="prose">
+        <p>We investigate the evolution of one-dimensional stellar merger products formed in massive binary systems, focusing on the M<sub>1,i</sub> = 10.16 M<sub>☉</sub> slice of the binary grid of Henneco et al. (2024b). We identify 100 Case A, Case AB, and Case Be systems that reach contact and are expected to merge. The properties of the merger progenitors at merger differ substantially from those at the onset of mass transfer, both in mass and evolutionary state.</p>
+        <p>We construct the merger products using two one-dimensional prescriptions, entropy sorting and PyMMAMS. These prescriptions differ qualitatively for post-main-sequence + main-sequence mergers. A three-dimensional smoothed-particle hydrodynamics calculation of one such configuration supports the entropy-sorting approach. We then evolve the merger products with MESA until central helium exhaustion.</p>
+        <p>We find two merger channels that populate the blue and yellow supergiant region in the Hertzsprung–Russell diagram (HRD) on a nuclear, rather than thermal, timescale. These two channels are largely indistinguishable by their position in the HRD alone. In most cases, the merger alters the observable appearance of the star while leaving the carbon–oxygen core mass close to that of a single star of the same post-merger mass. Both channels plausibly contribute to the observed blue-supergiant population.</p>
+        <details>
+          <summary>Zusammenfassung (Deutsch)</summary>
+          <p>Wir untersuchen die Entwicklung eindimensionaler Modelle von Sternverschmelzungsprodukten, die in massereichen Doppelsternsystemen entstehen. Dabei konzentrieren wir uns auf den Teil des Doppelsternrasters von Henneco et al. (2024b) mit einer anfänglichen Primärmasse von M<sub>1,i</sub> = 10.16 M<sub>☉</sub>. Wir identifizieren 100 Systeme der Fälle A, AB und Be, die in Kontakt kommen und voraussichtlich verschmelzen. Beide Kanäle stellen plausible Beiträge zur beobachteten Population blauer Überriesen dar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="channels">
+    <div class="cols">
+      <h2>Two merger channels</h2>
+      <div>
+        <div class="channels">
+          <div class="channel hot">
+            <h3>Post-main-sequence + main-sequence</h3>
+            <p>Helium ignites on the hot side of the HRD, at log<sub>10</sub>(T<sub>eff</sub>/K) &gt; 3.7, and the star stays there.</p>
+          </div>
+          <div class="channel">
+            <h3>A subset of main-sequence mergers</h3>
+            <p>The star moves to the cool side before helium ignition, then later executes a blue loop.</p>
+          </div>
+        </div>
+        <p>Both channels fill the blue and yellow supergiant region. Position in the HRD alone does not tell them apart.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="simulation">
+    <div class="cols">
+      <h2>The 3D simulation</h2>
+      <div class="prose">
+        <p>The video above comes from a smoothed-particle hydrodynamics run with Phantom. A 10 M<sub>☉</sub> Hertzsprung-gap primary and a 2 M<sub>☉</sub> main-sequence secondary spiral together, and the colour shows the logarithm of gas density in g/cm³.</p>
+        <p>This is one configuration of the post-main-sequence + main-sequence type. Its outcome supports the entropy-sorting prescription, which is the comparison made in the thesis.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="details">
+    <div class="cols">
+      <h2>About the thesis</h2>
+      <div class="cover">
+        <a href="thesis.pdf" aria-label="Open the thesis PDF"><img src="cover.png" alt="Title page of the thesis" width="400" height="566"></a>
+        <dl>
+          <dt>Author</dt><dd>Pranavandhan Upendranath</dd>
+          <dt>Institution</dt><dd>Department of Physics and Astronomy, Heidelberg University</dd>
+          <dt>Carried out at</dt><dd>Heidelberg Institute for Theoretical Studies (HITS)</dd>
+          <dt>Supervisor</dt><dd>Priv.-Doz. Dr. Fabian Schneider</dd>
+          <dt>Second examiner</dt><dd>Prof. Dr. Friedrich Roepke</dd>
+          <dt>Methods</dt><dd>MESA, PyMMAMS, entropy sorting, Phantom SPH</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="cite">
+    <div class="cols">
+      <h2>Cite</h2>
+      <div>
+        <pre id="bib">@mastersthesis{Upendranath2026,
+  author = {Upendranath, Pranavandhan},
+  title  = {Evolution of One-Dimensional Stellar Merger Products},
+  school = {Heidelberg University},
+  year   = {2026},
+  type   = {Master thesis}
+}</pre>
+        <div class="actions"><button class="btn ghost" id="copy" type="button">Copy BibTeX</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Pranavandhan Upendranath. The simulation video and thesis may not be reused without permission.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var v=document.getElementById('sim');
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}
+  var b=document.getElementById('copy');
+  b.addEventListener('click',function(){
+    var t=document.getElementById('bib').textContent;
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy BibTeX'},1800)};
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(done)}else{var r=document.createRange();r.selectNode(document.getElementById('bib'));getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand('copy');done()}
+  });
+})();
+</script>
+</body>
+</html>
