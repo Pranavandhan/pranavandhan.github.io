@@ -45,7 +45,7 @@ h1{font:300 clamp(2.4rem,6.2vw,5rem)/1.04 var(--serif);letter-spacing:-.015em;ma
 .btn.ghost:hover{border-color:var(--glow);color:var(--glow)}
 .size{font:400 .875rem var(--sans);color:var(--muted);align-self:center}
 section{padding:3rem 0;border-top:1px solid var(--line)}
-.cols>*,.cover>*{min-width:0}
+.cols>*,.cover>*,.author>*{min-width:0}
 .cols{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr);gap:1rem 3rem}
 h2{font:500 1.0625rem/1.4 var(--sans);margin:0;color:var(--ember)}
 .prose{max-width:36rem}
@@ -66,9 +66,22 @@ details{max-width:36rem;margin-top:1.5rem}
 summary{font:500 .9375rem var(--sans);color:var(--ember);cursor:pointer}
 details p{margin:.9rem 0 0;color:#d8c8b6;font-size:1.0625rem}
 footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);font:400 .875rem/1.6 var(--sans);color:var(--muted)}
+.author{display:grid;grid-template-columns:10rem minmax(0,1fr);gap:1.75rem;align-items:center}
+.author img{width:100%;height:auto;display:block;border-radius:2px}
+.author p{margin:0 0 .35rem}
+.author .name{font:500 1.375rem/1.3 var(--serif)}
+.author .where{color:var(--muted);font-size:1rem}
+.refs{list-style:none;margin:0;padding:0;max-width:40rem}
+.refs li{margin:0 0 1.3rem;line-height:1.45}
+.refs a{font-weight:500}
+.refs span{display:block;color:var(--muted);font-size:1rem;margin-top:.2rem}
+.fig{margin:1.75rem 0 0;max-width:46rem}
+.fig img{display:block;width:100%;height:auto;background:#fff}
+.fig figcaption{font:400 .9375rem/1.55 var(--sans);color:var(--muted);margin-top:.8rem;max-width:42rem}
 sub{line-height:0}
 @media (max-width:42rem){
   .cols,.channels,.cover{grid-template-columns:1fr}
+  .author{grid-template-columns:7rem minmax(0,1fr);gap:1.1rem}
   .cover img{max-width:9rem}
   dl{grid-template-columns:1fr;gap:.1rem}
   dd{margin-bottom:.8rem}
@@ -79,9 +92,9 @@ sub{line-height:0}
 <body>
 
 <video class="sim" id="sim" src="merger-simulation.mp4" poster="poster.jpg" autoplay muted loop playsinline controls preload="auto"
-  aria-label="Simulation of a 10 solar-mass star merging with a 2 solar-mass companion, showing gas density in the orbital plane"></video>
+  aria-label="Simulation of a 2 solar-mass main-sequence star merging with a 10 solar-mass post-main-sequence star, with 12 million particles. Colour shows gas density."></video>
 <div class="wrap">
-  <p class="sim-note">Gas density in the orbital plane as a 2 M<sub>☉</sub> star spirals into a 10 M<sub>☉</sub> star. Time in hours is shown in the corner.</p>
+  <p class="sim-note">A 2 M<sub>☉</sub> main-sequence star merging with a 10 M<sub>☉</sub> post-main-sequence star, simulated with 12 million SPH particles. Colour shows gas density.</p>
 
   <header class="title">
     <h1>Evolution of One&#8209;Dimensional Stellar Merger Products</h1>
@@ -127,12 +140,34 @@ sub{line-height:0}
     </div>
   </section>
 
+  <section id="structure">
+    <div class="cols">
+      <h2>Merger product and single star</h2>
+      <div>
+        <div class="prose">
+          <p>A 10 M<sub>☉</sub> single star ignites helium as a red giant and grows a deep convective envelope while it burns helium in its core. The merger product below spends the same phase with a convective helium-burning core and a radiative envelope, and it stays at higher effective temperature.</p>
+        </div>
+        <figure class="fig">
+          <a href="kippenhahn-merger-vs-single.jpg" aria-label="Open the figure at full size"><img src="kippenhahn-merger-vs-single.jpg" alt="Three panels. Left: Hertzsprung-Russell track of the merger product against single-star tracks. Centre: Kippenhahn diagram of the merged star, with a small convective core and a radiative envelope. Right: Kippenhahn diagram of a 10 solar-mass single star, with a deep convective envelope." width="2400" height="799" loading="lazy"></a>
+          <figcaption>Evolution of the Case Be merger product (M<sub>1,i</sub> = 10.16 M<sub>☉</sub>, q<sub>i</sub> = 0.3, a<sub>i</sub> = 44.87 R<sub>☉</sub>), built with entropy sorting. <em>Left:</em> track in the HR diagram, with markers every 2 × 10<sup>5</sup> yr during core helium burning. <em>Centre:</em> Kippenhahn diagram of the merged star. <em>Right:</em> the same for the 10 M<sub>☉</sub> single star. Figure 18 of the thesis.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="simulation">
     <div class="cols">
       <h2>The 3D simulation</h2>
-      <div class="prose">
-        <p>The video above comes from a smoothed-particle hydrodynamics run with Phantom. A 10 M<sub>☉</sub> Hertzsprung-gap primary and a 2 M<sub>☉</sub> main-sequence secondary spiral together, and the colour shows the logarithm of gas density in g/cm³.</p>
-        <p>This is one configuration of the post-main-sequence + main-sequence type. Its outcome supports the entropy-sorting prescription, which is the comparison made in the thesis.</p>
+      <div>
+        <div class="prose">
+        <p>The video above is a smoothed-particle hydrodynamics simulation run with Phantom. It follows a 10 M<sub>☉</sub> post-main-sequence star merging with a 2 M<sub>☉</sub> main-sequence star, using 12 million particles. The colour shows the logarithm of gas density in g/cm³.</p>
+        <p>The thesis compares a 1.2 million-particle run of the same configuration with the one-dimensional prescriptions. The outcome supports entropy sorting, as the figure below shows.</p>
+        <p>A paper presenting this simulation is in preparation.</p>
+      </div>
+        <figure class="fig">
+          <a href="sph-vs-entropy-sorting.jpg" aria-label="Open the figure at full size"><img src="sph-vs-entropy-sorting.jpg" alt="Two panels comparing the 3D SPH merger product with entropy sorting against mass coordinate. Left: passive scalar, with the secondary's material placed at about 2.3 solar masses by entropy sorting and about 3.3 solar masses by SPH. Right: hydrogen and helium mass fractions, with SPH smoother than entropy sorting." width="2000" height="977" loading="lazy"></a>
+          <figcaption>The 3D SPH merger product compared with entropy sorting (ES). <em>Left:</em> passive scalar against mass coordinate; it is 1 for material from the primary and 0 for material from the secondary. Dashed lines mark where it drops, at 2.3 M<sub>☉</sub> for ES and 3.3 M<sub>☉</sub> for SPH. <em>Right:</em> hydrogen (X) and helium (Y) mass fractions, SPH solid and ES dashed. Figure 13 of the thesis, from the 1.2 million-particle run.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -150,6 +185,33 @@ sub{line-height:0}
           <dt>Second examiner</dt><dd>Prof. Dr. Friedrich Roepke</dd>
           <dt>Methods</dt><dd>MESA, PyMMAMS, entropy sorting, Phantom SPH</dd>
         </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="related">
+    <div class="cols">
+      <h2>Related work</h2>
+      <ul class="refs">
+        <li><a href="https://arxiv.org/abs/2512.14669">1D stellar mergers: entropy sorting and PyMMAMS</a><span>Heller, Schneider, Henneco, Bronner and Lau. The two one-dimensional prescriptions compared in this thesis.</span></li>
+        <li><a href="https://doi.org/10.1051/0004-6361/202347893">Contact tracing of binary stars: Pathways to stellar mergers</a><span>Henneco, Schneider and Laplace (2024). The source of the binary grid the thesis draws on.</span></li>
+        <li><a href="https://arxiv.org/abs/2407.14593">Binarity at LOw Metallicity (BLOeM): A spectroscopic VLT monitoring survey of massive stars in the SMC</a><span>Shenar et al. (2024). The observed supergiant population the thesis compares against.</span></li>
+        <li><a href="https://arxiv.org/abs/1702.03930">Phantom: A smoothed particle hydrodynamics and magnetohydrodynamics code for astrophysics</a><span>Price et al. (2018). The code used for the 3D simulation.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="author">
+    <div class="cols">
+      <h2>Author</h2>
+      <div class="author">
+        <img src="pranavandhan.jpg" alt="Portrait of Pranavandhan Upendranath" width="320" height="320">
+        <div>
+          <p class="name">Pranavandhan Upendranath</p>
+          <p class="where">Heidelberg University and the Heidelberg Institute for Theoretical Studies</p>
+          <p><span id="mail">upranavandhan [at] gmail [dot] com</span></p>
+          <p><a href="https://orcid.org/0009-0002-3220-8722">ORCID 0009-0002-3220-8722</a></p>
+        </div>
       </div>
     </div>
   </section>
@@ -179,6 +241,8 @@ sub{line-height:0}
 (function(){
   var v=document.getElementById('sim');
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}
+  var m=document.getElementById('mail');
+  if(m){var u='upranavandhan',h=['gm','ail'].join(''),a=document.createElement('a'),addr=u+String.fromCharCode(64)+h+'.com';a.href='mailto:'+addr;a.textContent=addr;m.replaceWith(a);}
   var b=document.getElementById('copy');
   b.addEventListener('click',function(){
     var t=document.getElementById('bib').textContent;
