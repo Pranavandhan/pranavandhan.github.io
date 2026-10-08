@@ -94,7 +94,7 @@ sub{line-height:0}
 <video class="sim" id="sim" src="merger-simulation.mp4" poster="poster.jpg" autoplay muted loop playsinline controls preload="auto"
   aria-label="Simulation of a 2 solar-mass main-sequence star merging with a 10 solar-mass Hertzsprung-gap star, with 12 million particles. Colour shows gas density."></video>
 <div class="wrap">
-  <p class="sim-note">SPH simulation (12 million particles) of a 10 M<sub>☉</sub> Hertzsprung-gap primary merging with a 2 M<sub>☉</sub> zero-age main-sequence secondary, from the initial binary to the relaxed merger product. Colour shows the gas density, log<sub>10</sub>(ρ / g cm<sup>−3</sup>), in the orbital plane. The clock gives elapsed time in hours.</p>
+  <p class="sim-note">SPH simulation (12 million particles) of a 10 M<sub>☉</sub> Hertzsprung-gap primary merging with a 2 M<sub>☉</sub> zero-age main-sequence secondary, from the initial binary to the relaxed merger product. Colour shows the gas density, log<sub>10</sub>(ρ / g cm<sup>−3</sup>), in the orbital plane. The clock gives elapsed time in hours. A paper presenting this simulation is in preparation.</p>
 
   <header class="title">
     <h1>Evolution of One&#8209;Dimensional Stellar Merger Products</h1>
@@ -150,23 +150,6 @@ sub{line-height:0}
         <figure class="fig">
           <a href="kippenhahn-merger-vs-single.jpg" aria-label="Open the figure at full size"><img src="kippenhahn-merger-vs-single.jpg" alt="Three panels. Left: Hertzsprung-Russell track of the merger product against single-star tracks. Centre: Kippenhahn diagram of the merged star, with a small convective core and a radiative envelope. Right: Kippenhahn diagram of a 10 solar-mass single star, with a deep convective envelope." width="2400" height="799" loading="lazy"></a>
           <figcaption>Evolution of the Case Be merger product (M<sub>1,i</sub> = 10.16 M<sub>☉</sub>, q<sub>i</sub> = 0.3, a<sub>i</sub> = 44.87 R<sub>☉</sub>), built with entropy sorting. <em>Left:</em> track in the HR diagram, with markers every 2 × 10<sup>5</sup> yr during core helium burning. <em>Centre:</em> Kippenhahn diagram of the merged star. <em>Right:</em> the same for the 10 M<sub>☉</sub> single star. Figure 18 of the thesis.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section id="simulation">
-    <div class="cols">
-      <h2>The 3D simulation</h2>
-      <div>
-        <div class="prose">
-        <p>The video above is a smoothed-particle hydrodynamics simulation run with Phantom. It follows a 10 M<sub>☉</sub> post-main-sequence star merging with a 2 M<sub>☉</sub> main-sequence star, using 12 million particles. The colour shows the logarithm of gas density in g/cm³.</p>
-        <p>The thesis compares a 1.2 million-particle run of this configuration with the one-dimensional prescriptions. The 12 million-particle run converges to the same result, which supports entropy sorting, as the figure below shows.</p>
-        <p>A paper presenting this simulation is in preparation.</p>
-      </div>
-        <figure class="fig">
-          <a href="sph-vs-entropy-sorting-12M.jpg" aria-label="Open the figure at full size"><img src="sph-vs-entropy-sorting-12M.jpg" alt="Two panels comparing the 3D SPH merger product with entropy sorting against mass coordinate. Left: passive scalar, with the secondary's material placed at about 2.3 solar masses by entropy sorting and about 3.2 solar masses by SPH. Right: hydrogen and helium mass fractions, with SPH smoother than entropy sorting." width="886" height="442" loading="lazy"></a>
-          <figcaption>The 3D SPH merger product (12 million particles) compared with entropy sorting (ES). <em>Left:</em> passive scalar against mass coordinate; it is 1 for material from the primary and 0 for material from the secondary. Dashed lines mark where it drops, at 2.3 M<sub>☉</sub> for ES and 3.2 M<sub>☉</sub> for SPH. <em>Right:</em> hydrogen (X) and helium (Y) mass fractions, SPH solid and ES dashed. The thesis shows the same comparison for the 1.2 million-particle run (Figure 13).</figcaption>
         </figure>
       </div>
     </div>
